@@ -16,7 +16,7 @@ begin
 	begin
 		if (c<'0') or (c>'9') then
 		begin
-			writeln('unexpect ''' ,c, ''''' in pos: ', pos);
+			writeln('unexpect ''' ,c, ''' in pos: ', pos);
 			readln;
 			ReadLongint := false;
 			exit
@@ -31,17 +31,19 @@ end;
 
 var 
 	x,y:longint;
-	ok: boolean;
 begin
-	repeat
-		write('Please type the first number: ');
-		ok:=ReadLongint(x)
-	until ok;
-	
-	repeat
-		write('Pleas type the second number: ');
-		ok:=ReadLongint(y)
-	until ok;	
-	writeln(x, ' times ', y ,' is ', x*y)
-
+	while not ReadLongint(x) do
+		;
+	while not ReadLongint(y) do
+		;
+	writeln(x, ' times ', y, ' is ', x*y)
 end.
+
+
+
+
+
+
+
+
+
