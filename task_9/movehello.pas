@@ -3,6 +3,14 @@ uses Crt;
 const
 	Message = 'Hello, World';
 
+function corX(x:integer; msg:string):integer;
+begin
+	case x of
+	0: corX:=ScreenWidth - length(msg);
+	else corX:=x
+	end
+end;
+
 procedure ShowMessage(x,y:integer; msg:string);
 begin
 	GotoXY(x,y);
@@ -26,6 +34,8 @@ begin
 	x:=x+dx;
 	y:=y+dy;
 	
+	x:=corX(x,msg);
+
 	ShowMessage(x,y,msg)
 end;
 
