@@ -5,10 +5,9 @@ const
 
 function corX(x:integer; msg:string):integer;
 begin
-	case x of
-	0: corX:=ScreenWidth - length(msg);
-	else corX:=x
-	end
+	corX:=x;
+	if x=0 then corX:=ScreenWidth-length(msg)+1;
+	if x>=(ScreenWidth-length(msg)+2) then corX:=1
 end;
 
 procedure ShowMessage(x,y:integer; msg:string);
@@ -49,6 +48,7 @@ begin
 	ShowMessage(CurX, CurY, Message);
 	while true do
 	begin
+		writeln(ScreenWidth, ' ', length(Message));
 		ch:=ReadKey;
 		if ch<>#0 then break;
 
