@@ -10,6 +10,13 @@ begin
 	if x>=(ScreenWidth-length(msg)+2) then corX:=1
 end;
 
+function corY(y:integer; msg:string):integer;
+begin
+	corY:=y;
+	if y=0 then corY:=ScreenHeight;
+	if y=ScreenHeight+1 then corY:=1
+end;
+
 procedure ShowMessage(x,y:integer; msg:string);
 begin
 	GotoXY(x,y);
@@ -34,6 +41,7 @@ begin
 	y:=y+dy;
 	
 	x:=corX(x,msg);
+	y:=corY(y,msg);
 
 	ShowMessage(x,y,msg)
 end;
@@ -48,7 +56,6 @@ begin
 	ShowMessage(CurX, CurY, Message);
 	while true do
 	begin
-		writeln(ScreenWidth, ' ', length(Message));
 		ch:=ReadKey;
 		if ch<>#0 then break;
 
