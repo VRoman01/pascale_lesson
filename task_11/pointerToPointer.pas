@@ -77,6 +77,23 @@ program pointerToPointer;
             end
         end; 
 
+    procedure RemoveLessZero2(var q: QueueOfLongint);
+        var
+            tmp: LongItemPtr; 
+            pp: ^LongItemPtr;
+        begin
+            pp:=@(q.first);
+            while pp^ <> nil do
+            begin
+                if pp^^.data<0 then
+                begin
+                tmp:=pp^;
+                pp^:=pp^^.next;
+                dispose(tmp)
+                end
+                else pp:=@(pp^^.next)
+            end
+        end;
 var
 	q: QueueOfLongint;
 	n: longint;
@@ -88,7 +105,7 @@ begin
 		QOLPut(q,n)
 	end;
     
-    RemoveLessZero(q);
+    RemoveLessZero2(q);
 
 	while QOLGet(q,n) do
 		writeln(n);
