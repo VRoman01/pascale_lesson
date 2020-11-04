@@ -64,15 +64,3 @@ begin
 	while QOLGet(q,n) do
 		writeln(n);
 end.
-
-
-
-
-
-
-
-
-
-
-
-

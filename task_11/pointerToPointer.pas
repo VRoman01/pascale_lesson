@@ -16,7 +16,21 @@ program pointerToPointer;
 		    queue.first:=nil;
 		    queue.last:=nil;
 	    end;
-	
+
+    procedure QOLPutAndSort(var q: QueueOfLongint; n: longint);
+        var
+            pp: ^LongItemPtr;
+            tmp: LongItemPtr;
+        begin
+            pp:=@(q.first);
+            while (pp^<>nil) and (n>pp^^.data) do
+                pp:=@(pp^^.next);
+            new(tmp);
+            tmp^.data:=n;
+            tmp^.next:=pp^;
+            pp^:=tmp;
+        end;
+
     procedure QOLPut(var queue: QueueOfLongint; n: longint);
         begin
 	        if queue.first=nil then
@@ -102,7 +116,7 @@ begin
 	while not eof do
 	begin
 		readln(n);
-		QOLPut(q,n)
+		QOLPutAndSort(q,n)
 	end;
     
     RemoveLessZero2(q);
