@@ -30,7 +30,22 @@ program pointerToPointer;
             tmp^.next:=pp^;
             pp^:=tmp;
         end;
-
+ 
+    procedure HelpToSort2(var p : LongItemPtr; n : integer);
+        var
+            tmp: LongItemPtr;
+        begin
+            if (p=nil) or (p^.data>n) then
+            begin
+                new(tmp);
+                tmp^.data:=n;
+                tmp^.next:=p;
+                p:=tmp;
+            end
+            else 
+                HelpToSort2(p^.next ,n)
+        end;   
+ 
     procedure QOLPut(var queue: QueueOfLongint; n: longint);
         begin
 	        if queue.first=nil then
@@ -115,8 +130,8 @@ begin
 	QOLInit(q);
 	while not eof do
 	begin
-		readln(n);
-		QOLPutAndSort(q,n)
+		read(n);
+		HelpToSort2(q.first,n)
 	end;
     
     RemoveLessZero2(q);
